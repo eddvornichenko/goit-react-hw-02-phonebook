@@ -82,14 +82,18 @@ export default class ContactForm extends Component {
         
         </input>
         <ul>
-          {this.state.contacts.map(contact => (
-            <li key={contact.id}>
-              <p>
-                {contact.name}: {contact.number}
-              </p>
-            </li>
-          ))}
-        </ul>
+  {this.state.contacts
+    .filter(contact => 
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    )
+    .map(contact => (
+      <li key={contact.id}>
+        <p>
+          {contact.name}: {contact.number}
+        </p>
+      </li>
+    ))}
+</ul>
       </div>
     );
   }
